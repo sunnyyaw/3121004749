@@ -10,12 +10,15 @@ class WordsCounter:
         self.outPath = outPath
         self.replication = 0
     def countWords(self):
+        # 读取文件
         f1 = open(self.origPath,'r')
         f2 = open(self.repliPath,'r')
         paragraph1 = f1.read()
         paragraph2 = f2.read()
+        # 用jieba库进行分词
         seg_words1 = jieba.cut(paragraph1)
         seg_words2 = jieba.cut(paragraph2)
+        # 计算词频
         for word in seg_words1:
             if(word not in self.words):
                 self.words[word]=[1,0]
@@ -29,6 +32,7 @@ class WordsCounter:
         f1.close()
         f2.close()
     def calculateReplication(self):
+        # 计算文章余弦相似度
         innerProduct = 0
         modular1 = 0
         modular2 = 0
@@ -38,6 +42,7 @@ class WordsCounter:
             modular2 += value[1]*value[1]
         self.replication = innerProduct/(math.sqrt(modular1)*math.sqrt(modular2))
     def outReplication(self):
+        # 将相似度输出至文件
         f = open(self.outPath,"w")
         f.write(str(self.replication))
         f.close()
