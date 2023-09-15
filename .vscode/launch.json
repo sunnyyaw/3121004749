@@ -1,0 +1,19 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["C:/Users/23028/Desktop/wordFiles/orig.txt",
+            "C:/Users/23028/Desktop/wordFiles/orig_0.8_dis_15.txt",
+            "C:/Users/23028/Desktop/wordFiles/result.txt"]
+        }
+    ]
+}
