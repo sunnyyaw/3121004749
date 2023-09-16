@@ -13,13 +13,13 @@ class WordsCounter:
         self.words.clear()
         # 读取文件
         try:
-            f1 = open(self.origPath,'r')
-            f2 = open(self.repliPath,'r')
+            with open(self.origPath,'r')as f1:
+                paragraph1 = f1.read()
+            with open(self.repliPath,'r')as f2:
+                paragraph2 = f2.read()
         except Exception as e:
             print(e)
             raise
-        paragraph1 = f1.read()
-        paragraph2 = f2.read()
         # 用jieba库进行分词
         seg_words1 = jieba.cut(paragraph1)
         seg_words2 = jieba.cut(paragraph2)
@@ -34,8 +34,6 @@ class WordsCounter:
                 self.words[word]=[0,1]
             else:
                 self.words[word][1]+=1
-        f1.close()
-        f2.close()
     def calculateReduplication(self):
         # 计算文章余弦相似度
         innerProduct = 0
@@ -50,12 +48,11 @@ class WordsCounter:
     def outReduplication(self):
         # 将相似度输出至文件
         try:
-            f = open(self.outPath,"w")
+            with open(self.outPath,'a')as f:
+                f.write(str('%.2f'%self.reduplication)+'\n')
         except Exception as e:
             print(e)
             raise
-        f.write(str(self.reduplication))
-        f.close()
 def main():
     if(len(sys.argv)<4):
         raise Exception("参数数目不足")
